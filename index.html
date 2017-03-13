@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <base href="/">
+  <meta name="fragment" content="!">
+  <meta name="description" content="MEAN app for the Artoo Campus">
+  <meta name="author" content="WeBox Studio">
+  <meta name="application-name" content="Artoo Campus">
+  <meta name="viewport" content="width=device-width">
+  <title>Artoo Campus - Controllers</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-app="app">
+  <div class="container">
+
+    <div ng-controller="TodoListController">
+      <h1>COSE DA FARE ...
+        <span ng-show="cosedafare.length">{{cosedafare.length}}</span>
+        <span ng-show="!cosedafare.length">non ho niente da fare</span>
+
+      </h1>
+      <form ng-submit="addTodo()">
+        <input type="text" ng-model="descrizione" size="30" placeholder="aggiungi cose da fare">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+      <h5 ng-show="cosedafare.length">Lista delle cose da fare</h5>
+      <ul class="unstyled">
+        <li ng-repeat="todo in cosedafare track by $index">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="todo.fatto">
+          </label>
+          <span class="done-{{todo.fatto}}">{{todo.descrizione}}</span>
+          <span ng-class="removeTodo($index)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="app.js"></script>
+  <!-- load the item controller -->
+  <script src="todo.controller.js"></script>
+</body>
+
+</html>
